@@ -8,8 +8,8 @@ import { useSiteData } from '@/components/SiteDataProvider';
 export function Footer() {
   const siteData = useSiteData();
   const gymName = siteData?.gym?.name?.toUpperCase() || 'STUDIO REFORM';
-  const instagram = siteData?.gym?.instagram || studio.social.instagram;
-  const facebook = siteData?.gym?.facebook || studio.social.facebook;
+  const instagram = siteData?.brand?.instagram_url || siteData?.gym?.instagram || studio.social.instagram;
+  const facebook = siteData?.brand?.facebook_url || siteData?.gym?.facebook || studio.social.facebook;
 
   return (
     <footer style={{ backgroundColor: 'var(--bg-dark)' }}>

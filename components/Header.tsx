@@ -17,6 +17,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const siteData = useSiteData();
   const gymName = siteData?.gym?.name?.toUpperCase() || 'STUDIO REFORM';
+  const logoUrl = siteData?.brand?.logo_url;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -37,16 +38,20 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/">
-            <span
-              className="font-heading tracking-wider"
-              style={{
-                fontSize: '1.15rem',
-                color: scrolled ? 'var(--ink)' : 'white',
-                transition: 'color 0.4s',
-              }}
-            >
-              {gymName}
-            </span>
+            {logoUrl ? (
+              <img src={logoUrl} alt={gymName} className="h-8 w-auto object-contain" />
+            ) : (
+              <span
+                className="font-heading tracking-wider"
+                style={{
+                  fontSize: '1.15rem',
+                  color: scrolled ? 'var(--ink)' : 'white',
+                  transition: 'color 0.4s',
+                }}
+              >
+                {gymName}
+              </span>
+            )}
           </Link>
 
           {/* Desktop nav */}
