@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── REFORM Design Tokens ─────────────────────────────── */
+:root {
+  --bg: var(--cg-bg, #F7F3F0);
+  --bg-pearl: #EDE6E1;
+  --bg-dark: #0D0D0D;
+  --bg-off: #FAF8F6;
+
+  --blush: var(--cg-primary, #E8C4C0);   /* primary */
+  --rose: #C9A5A0;       /* accent */
+  --ash: #A89490;        /* mid */
+  --sand: #D6C8C4;       /* light blush */
+
+  --ink: var(--cg-text, #0D0D0D);
+  --muted: #6B5E5A;
+  --border: #E0D6D2;
+  --radius: var(--cg-radius, 0px);
+}
+
+/* ─── Typography ──────────────────────────────────────── */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+/* ─── Grain overlay ───────────────────────────────────── */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grain 0.8s steps(1) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Layout utilities ────────────────────────────────── */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container-wide { padding-inline: 3rem; }
+}
+
+.container-tight {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ─── Brand utilities ─────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+.divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--blush);
+  margin: 1.5rem auto;
+}
+
+.divider-left {
+  margin-left: 0;
+}
+
+/* ─── Buttons ─────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--ink);
+  color: #FAFAFA;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-primary:hover {
+  background-color: var(--blush);
+  color: var(--ink);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-outline:hover {
+  background-color: var(--ink);
+  color: #FAFAFA;
+}
+
+.btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.btn-ghost-white:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* ─── Widget iframe ───────────────────────────────────── */
+.koriva-widget-frame {
+  width: 100%;
+  border: none;
+  display: block;
+}
