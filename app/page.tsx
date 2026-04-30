@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/HeroSection';
 import { PhilosophyBar } from '@/components/PhilosophyBar';
 import { ClassesSection } from '@/components/ClassesSection';
 import { ManifestoSection } from '@/components/ManifestoSection';
+import { PressSection } from '@/components/PressSection';
 import { TeachersSection } from '@/components/TeachersSection';
 import { GallerySection } from '@/components/GallerySection';
 import { PricingSection } from '@/components/PricingSection';
@@ -19,6 +20,7 @@ export default function Home() {
       <PhilosophyBar />
       <ClassesSection />
       <ManifestoSection />
+      <PressSection />
       <TeachersSection />
       <GallerySection />
       <PricingSection />
