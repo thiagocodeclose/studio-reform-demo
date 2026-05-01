@@ -7,6 +7,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
 import { SiteDataProvider } from '@/components/SiteDataProvider';
 
+import { KorivaLivePreview } from '@/components/KorivaLivePreview';
 const playfair = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '900'],
@@ -57,6 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <JsonLd />
       </head>
       <body>
+        <KorivaLivePreview />
         <SiteDataProvider config={config}>
           <main id="main-content">{children}</main>
           <GlobalWidgets />
