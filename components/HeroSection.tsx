@@ -3,11 +3,44 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useKorivaElement } from '@/hooks/useKorivaElement';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 const headline = ['Precision.', 'Sculpted.', 'You.'];
 
 export function HeroSection() {
-  return (
+  
+  const siteData = typeof useSiteData === 'function' ? useSiteData() : null;
+
+  const eyebrow = useKorivaElement('hero_eyebrow',
+    { content: 'STUDIO REFORM', visible: true },
+    { section: 'Hero', label: 'Eyebrow', type: 'eyebrow' });
+
+  const hl1 = useKorivaElement('hero_headline_1',
+    { content: 'Studio Reform', visible: true },
+    { section: 'Hero', label: 'Headline', type: 'text' });
+
+  const tagline = useKorivaElement('hero_headline_2',
+    { content: 'Precision in Every Movement', visible: true },
+    { section: 'Hero', label: 'Tagline', type: 'text' });
+
+  const subtitle = useKorivaElement('hero_subtitle',
+    { content: 'Austin's premier Pilates and reformer studio.', visible: true },
+    { section: 'Hero', label: 'Description', type: 'text' });
+
+  const cta1 = useKorivaElement('hero_cta_primary',
+    { content: 'Book Free Class', visible: true },
+    { section: 'Hero', label: 'CTA Primary', type: 'button' });
+
+  const cta2 = useKorivaElement('hero_cta_secondary',
+    { content: 'View Schedule', visible: true },
+    { section: 'Hero', label: 'CTA Secondary', type: 'button' });
+
+  const heroBg = useKorivaElement('hero_bg',
+    { content: '', mediaType: 'image', visible: true },
+    { section: 'Hero', label: 'Background Image', type: 'image' });
+
+return (
     <section
       className="relative min-h-screen flex flex-col justify-end overflow-hidden grain"
       style={{ backgroundColor: 'var(--bg-dark)' }}

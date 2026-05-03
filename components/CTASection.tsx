@@ -3,9 +3,23 @@
 import { useEffect, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { koriva } from '@/lib/site-data';
+import { useKorivaElement } from '@/hooks/useKorivaElement';
 
 export function CTASection() {
-  const [iframeHeight, setIframeHeight] = useState(320);
+  
+  const ctaEyebrow = useKorivaElement('cta_eyebrow',
+    { content: 'Get Started', visible: true },
+    { section: 'CTA', label: 'Eyebrow', type: 'eyebrow' });
+
+  const ctaHeadline = useKorivaElement('cta_headline',
+    { content: 'Book Free Class at Studio Reform', visible: true },
+    { section: 'CTA', label: 'Headline', type: 'text' });
+
+  const ctaSubtitle = useKorivaElement('cta_subtitle',
+    { content: 'No commitment. Just results.', visible: true },
+    { section: 'CTA', label: 'Subtitle', type: 'text' });
+
+const [iframeHeight, setIframeHeight] = useState(320);
 
   useEffect(() => {
     const handler = (e: MessageEvent) => {
