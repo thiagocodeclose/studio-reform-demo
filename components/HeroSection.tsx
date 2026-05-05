@@ -12,6 +12,11 @@ import { useSiteData } from '@/components/SiteDataProvider';
  * Reference: SLT NYC bento layout, Equinox precision aesthetic
  */
 export function HeroSection() {
+
+  const [bookingIntegration, setBookingIntegration] = useState<{
+    booking_enabled: boolean;
+    booking_url: string;
+  }>({ booking_enabled: false, booking_url: '#' });
   const siteData = typeof useSiteData === 'function' ? useSiteData() : null;
 
   const eyebrow = useKorivaElement('hero_eyebrow', { content: 'STUDIO REFORM', visible: true }, { section: 'Hero', label: 'Eyebrow', type: 'eyebrow' });
@@ -30,6 +35,21 @@ export function HeroSection() {
     transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] },
   });
 
+  useEffect(() => {
+    function handleBrand(e: Event) {
+      const d = (e as CustomEvent).detail as Record<string, unknown>;
+      if (d.booking_enabled !== undefined || d.gym_slug !== undefined) {
+        const slug = (d.gym_slug as string) || '';
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.codegyms.com';
+        setBookingIntegration({
+          booking_enabled: !!(d.booking_enabled),
+          booking_url: slug ? `${baseUrl}/schedule/${slug}` : '#',
+        });
+      }
+    }
+    window.addEventListener('koriva:brand', handleBrand);
+    return () => window.removeEventListener('koriva:brand', handleBrand);
+  }, []);
   return (
     <section style={{ backgroundColor: 'var(--bg-cream, #FAFAFA)', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
       {/* Top eyebrow bar */}
@@ -76,7 +96,7 @@ export function HeroSection() {
             <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(0.85rem, 1.5vw, 1.5rem)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(200,169,169,0.9)', margin: 0 }}>{tagline.content}</p>
           </motion.div>
           <motion.div {...fadeUp(0.65)} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Link href="#contact" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '11px 20px', backgroundColor: 'var(--primary, #C8A9A9)', color: '#1E1E1E', borderRadius: '3px', fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', fontFamily: 'var(--font-body)' }}>{cta1.content}</Link>
+            <Link href="{bookingIntegration.booking_enabled ? bookingIntegration.booking_url : \'#classes\'}" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '11px 20px', backgroundColor: 'var(--primary, #C8A9A9)', color: '#1E1E1E', borderRadius: '3px', fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', fontFamily: 'var(--font-body)' }}>{cta1.content}</Link>
             <Link href="#schedule" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '10px 20px', backgroundColor: 'transparent', color: 'rgba(250,250,250,0.45)', border: '1px solid rgba(250,250,250,0.15)', borderRadius: '3px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', fontFamily: 'var(--font-body)' }}>{cta2.content}</Link>
           </motion.div>
         </div>
