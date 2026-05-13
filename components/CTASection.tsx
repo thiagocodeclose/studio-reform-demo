@@ -62,13 +62,13 @@ const [iframeHeight, setIframeHeight] = useState(320);
       <div className="relative z-10 py-32 md:py-44">
         <div className="container-tight text-center">
           <Reveal>
-            <p className="eyebrow text-[var(--blush)] mb-8">Begin Today</p>
+            <p className="eyebrow text-[var(--blush)] mb-8" {...ctaEyebrow.editProps}>{ctaEyebrow.content || "Begin Today"}</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2
               className="font-heading text-white leading-none mb-6"
               style={{ fontSize: 'clamp(2.5rem, 7vw, 6.5rem)' }}
-            >
+             {...ctaHeadline.editProps}>
               Your First Class
               <br />
               <span className="italic" style={{ color: 'var(--blush)' }}>
@@ -83,9 +83,7 @@ const [iframeHeight, setIframeHeight] = useState(320);
             />
           </Reveal>
           <Reveal delay={0.25}>
-            <p className="font-body text-white/40 max-w-sm mx-auto text-sm leading-relaxed mb-14">
-              No credit card. No commitment. Just the best reformer class you have ever taken.
-            </p>
+            <p className="font-body text-white/40 max-w-sm mx-auto text-sm leading-relaxed mb-14" {...ctaSubtitle.editProps}>{ctaSubtitle.content || "No credit card. No commitment. Just the best reformer class you have ever taken."}</p>
           </Reveal>
 
           <Reveal delay={0.3}>
