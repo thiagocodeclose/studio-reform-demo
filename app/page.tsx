@@ -11,6 +11,7 @@ import { PricingSection } from '@/components/PricingSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { CTASection } from '@/components/CTASection';
 import { Footer } from '@/components/Footer';
+import { AIChatWidget } from '@/components/AIChatWidget';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <TestimonialsSection />
       <CTASection />
       <Footer />
+      <AIChatWidget />
     </>
   );
 }
