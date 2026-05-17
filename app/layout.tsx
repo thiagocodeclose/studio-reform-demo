@@ -4,10 +4,10 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
 import { GlobalWidgets } from '@/components/GlobalWidgets';
 import { JsonLd } from '@/components/JsonLd';
-import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
+import { getGarrison365Config, buildCssVars } from '@/lib/garrison365-config';
 import { SiteDataProvider } from '@/components/SiteDataProvider';
 
-import { KorivaLivePreview } from '@/components/KorivaLivePreview';
+import { Garrison365LivePreview } from '@/components/Garrison365LivePreview';
 const playfair = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '900'],
@@ -29,7 +29,7 @@ const DEFAULT_TITLE = 'Studio Reform | Pilates Reformer & Barre · Austin, TX';
 const DEFAULT_DESC = "Austin's premier Pilates reformer & barre studio. Science-backed, precision-driven training for a leaner, longer, stronger body. First class free.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const config = await getKorivaConfig();
+  const config = await getGarrison365Config();
   const title = config?.seo?.title || DEFAULT_TITLE;
   const description = config?.seo?.description || DEFAULT_DESC;
   const gymName = config?.gym?.name || 'Studio Reform';
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const config = await getKorivaConfig();
+  const config = await getGarrison365Config();
   const cssVars = buildCssVars(config?.brand);
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`} style={cssVars}>
@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <JsonLd />
       </head>
       <body>
-        <KorivaLivePreview />
+        <Garrison365LivePreview />
         <SiteDataProvider config={config}>
           <main id="main-content">{children}</main>
           <GlobalWidgets />

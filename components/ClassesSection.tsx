@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { koriva } from '@/lib/site-data';
+import { garrison365 } from '@/lib/site-data';
 
 const classTypes = [
   { name: 'Classical Reformer', desc: 'The original — spring-loaded resistance, full-body precision.' },
@@ -17,7 +17,7 @@ export function ClassesSection() {
 
   useEffect(() => {
     const handler = (e: MessageEvent) => {
-      if (e.origin !== koriva.baseUrl) return;
+      if (e.origin !== garrison365.baseUrl) return;
       const d = e.data;
       if (d?.source === 'codegym-widget' && d?.type === 'widget:resize' && d?.widget === 'classes') {
         setIframeHeight(d.payload.height + 24);
@@ -27,7 +27,7 @@ export function ClassesSection() {
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const src = `${koriva.baseUrl}/widgets/classes/${koriva.gymSlug}?embed=1&cg_primary=E8C4C0&cg_bg=F7F3F0&cg_text=0D0D0D&cg_radius=0&cg_mode=light`;
+  const src = `${garrison365.baseUrl}/widgets/classes/${garrison365.gymSlug}?embed=1&cg_primary=E8C4C0&cg_bg=F7F3F0&cg_text=0D0D0D&cg_radius=0&cg_mode=light`;
 
   return (
     <section id="classes" className="section-padding" style={{ backgroundColor: 'var(--bg)' }}>
@@ -93,7 +93,7 @@ export function ClassesSection() {
               <iframe
                 src={src}
                 title="Studio Reform Class Schedule"
-                className="koriva-widget-frame"
+                className="garrison365-widget-frame"
                 style={{ height: `${iframeHeight}px` }}
                 allow="clipboard-write"
                 loading="lazy"

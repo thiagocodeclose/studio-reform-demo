@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useKorivaElement } from '@/hooks/useKorivaElement';
+import { useGarrison365Element } from '@/hooks/useGarrison365Element';
 import { useSiteData } from '@/components/SiteDataProvider';
 
 /**
@@ -21,15 +21,15 @@ export function HeroSection() {
   }>({ booking_enabled: false, booking_url: '#' });
   const siteData = typeof useSiteData === 'function' ? useSiteData() : null;
 
-  const eyebrow = useKorivaElement('hero_eyebrow', { content: 'STUDIO REFORM', visible: true }, { section: 'Hero', label: 'Eyebrow', type: 'eyebrow' });
-  const hl1 = useKorivaElement('hero_headline_1', { content: 'Precision.\nSculpted.\nYou.', visible: true }, { section: 'Hero', label: 'Headline', type: 'text' });
-  const tagline = useKorivaElement('hero_headline_2', { content: "Austin's premier reformer studio.", visible: true }, { section: 'Hero', label: 'Tagline', type: 'text' });
-  const subtitle = useKorivaElement('hero_subtitle', { content: 'Small-group Pilates. Reformer. Barre. Zero excuses.', visible: true }, { section: 'Hero', label: 'Description', type: 'text' });
-  const cta1 = useKorivaElement('hero_cta_primary', { content: 'Book Free Class', visible: true }, { section: 'Hero', label: 'CTA Primary', type: 'button' });
-  const cta2 = useKorivaElement('hero_cta_secondary', { content: 'View Schedule', visible: true }, { section: 'Hero', label: 'CTA Secondary', type: 'button' });
+  const eyebrow = useGarrison365Element('hero_eyebrow', { content: 'STUDIO REFORM', visible: true }, { section: 'Hero', label: 'Eyebrow', type: 'eyebrow' });
+  const hl1 = useGarrison365Element('hero_headline_1', { content: 'Precision.\nSculpted.\nYou.', visible: true }, { section: 'Hero', label: 'Headline', type: 'text' });
+  const tagline = useGarrison365Element('hero_headline_2', { content: "Austin's premier reformer studio.", visible: true }, { section: 'Hero', label: 'Tagline', type: 'text' });
+  const subtitle = useGarrison365Element('hero_subtitle', { content: 'Small-group Pilates. Reformer. Barre. Zero excuses.', visible: true }, { section: 'Hero', label: 'Description', type: 'text' });
+  const cta1 = useGarrison365Element('hero_cta_primary', { content: 'Book Free Class', visible: true }, { section: 'Hero', label: 'CTA Primary', type: 'button' });
+  const cta2 = useGarrison365Element('hero_cta_secondary', { content: 'View Schedule', visible: true }, { section: 'Hero', label: 'CTA Secondary', type: 'button' });
 
-  const imgA = useKorivaElement('hero_img_a', { content: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=85&auto=format&fit=crop', mediaType: 'image', visible: true }, { section: 'Hero', label: 'Main Image', type: 'image' });
-  const imgB = useKorivaElement('hero_img_b', { content: 'https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=800&q=85&auto=format&fit=crop', mediaType: 'image', visible: true }, { section: 'Hero', label: 'Secondary Image', type: 'image' });
+  const imgA = useGarrison365Element('hero_img_a', { content: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=85&auto=format&fit=crop', mediaType: 'image', visible: true }, { section: 'Hero', label: 'Main Image', type: 'image' });
+  const imgB = useGarrison365Element('hero_img_b', { content: 'https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=800&q=85&auto=format&fit=crop', mediaType: 'image', visible: true }, { section: 'Hero', label: 'Secondary Image', type: 'image' });
 
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 14 },
@@ -49,8 +49,8 @@ export function HeroSection() {
         });
       }
     }
-    window.addEventListener('koriva:brand', handleBrand);
-    return () => window.removeEventListener('koriva:brand', handleBrand);
+    window.addEventListener('garrison365:brand', handleBrand);
+    return () => window.removeEventListener('garrison365:brand', handleBrand);
   }, []);
   return (
     <section style={{ backgroundColor: 'var(--bg-cream, #FAFAFA)', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
